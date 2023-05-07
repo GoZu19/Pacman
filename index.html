@@ -12,7 +12,14 @@
 
 <body>
     <canvas id="canvas"></canvas>
+    <!-- tiene que ir este orden por que si no carga bien por orden de ejecución
+    puede decir que falte un elemento que no se ha creado -->
+    <script src="canvas.js"></script>
+    <script src="/ghost_js/ghosts.js"></script>
+    <script src="pacman.js"></script>
+    <script src="laberinto.js"></script>
     <script src="js.js"></script>
+    
 </body>
 
 </html>
