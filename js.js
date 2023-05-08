@@ -1,5 +1,3 @@
-
-
 //cargar el pacman
 pacman.onload();
 //cargar fantastmas:
@@ -38,14 +36,14 @@ document.addEventListener("keydown", function(event) {
 
     // Detectar colisiones con los muros
     for (var i = 0; i < laberinto1.length; i++) {
-        if (pacman.positionx <laberinto1[i].x + laberinto1[i].width &&
-            pacman.positionx + pacman.tamanoy> laberinto1[i].x  &&
+        if (pacman.positionx < laberinto1[i].x + laberinto1[i].width &&
+            pacman.positionx + pacman.tamanoy > laberinto1[i].x &&
             pacman.positiony < laberinto1[i].y + laberinto1[i].height &&
             pacman.tamanoy + pacman.positiony > laberinto1[i].y) {
             // Si hay colisión, mover al jugador de vuelta
             if (event.keyCode === 37) {
                 pacman.positionx += 10;
-                
+
             } else if (event.keyCode === 38) {
                 pacman.positiony += 10;
             } else if (event.keyCode === 39) {
