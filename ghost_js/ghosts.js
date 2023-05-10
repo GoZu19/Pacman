@@ -1,16 +1,18 @@
-const velocidadFantasma = 6;
+const velocidadFantasma = 10;
 // con el new Image le doy propiedas a una image pero aún no está en el canvas
 const ghostRed = new Image();
+var crearArrayFantasma = ()=>[ghostRed,ghostPink,ghostSky,ghostYellow]
 //le digo donde va estar en que sitio de x, en una imagen no puede tener atributos de x o y si fuera creación de figura y no una imagen si
 //aquí le digo 
 // es te el fantasma verde
 ghostRed.positionx = 280;
 ghostRed.positiony = 250;
-ghostRed.tamanox = 15;
-ghostRed.tamanoy = 15;
+ghostRed.tamanox = 20;
+ghostRed.tamanoy = 20;
 ghostRed.pospx = 0;
 ghostRed.pospy = 0;
 ghostRed.src = "../ghost_image/ghost_red.svg"
+ghostRed.id = "gred";
 ghostRed.onload = function() {
         contextcanvas.drawImage(ghostRed, ghostRed.positionx, ghostRed.positiony);
     }
@@ -25,10 +27,11 @@ const ghostPink = new Image();
 //aquí le digo 
 ghostPink.positionx = 300;
 ghostPink.positiony = 250;
-ghostPink.tamanox = 15;
-ghostPink.tamanoy = 15;
+ghostPink.tamanox = 20;
+ghostPink.tamanoy = 20;
 ghostPink.pospx = 0;
 ghostPink.pospy = 0;
+ghostPink.id = "gpink";
 ghostPink.src = "../ghost_image/ghost_pink.svg"
 ghostPink.onload = () => contextcanvas.drawImage(ghostPink, ghostPink.positionx, ghostPink.positiony);
 //está función es la ia del fantasma por el momento falta implementar el calculo de la distancia
@@ -40,11 +43,13 @@ const ghostSky = new Image();
 //aquí le digo 
 ghostSky.positionx = 320;
 ghostSky.positiony = 250;
-ghostSky.tamanox = 15;
-ghostSky.tamanoy = 15;
+ghostSky.tamanox = 20;
+ghostSky.tamanoy = 20;
 ghostSky.pospx = 0;
 ghostSky.pospy = 0;
+
 ghostSky.src = "../ghost_image/ghost_sky.svg"
+ghostSky.id = "gsky";
 ghostSky.onload = () => contextcanvas.drawImage(ghostSky, ghostSky.positionx, ghostSky.positiony);
 //está función es la ia del fantasma por el momento falta implementar el calculo de la distancia
 ghostSky.ia = () => iaFantasmal(setInterval, ghostSky);
@@ -56,11 +61,12 @@ const ghostYellow = new Image();
 //aquí le digo 
 ghostYellow.positionx = 260;
 ghostYellow.positiony = 250;
-ghostYellow.tamanox = 15;
-ghostYellow.tamanoy = 15;
+ghostYellow.tamanox = 20;
+ghostYellow.tamanoy = 20;
 ghostYellow.pospx = 0;
 ghostYellow.pospy = 0;
 ghostYellow.src = "../ghost_image/ghost_Yellow.svg"
+ghostYellow.id = "gyellow";
 ghostYellow.onload = () => contextcanvas.drawImage(ghostYellow, ghostYellow.positionx, ghostYellow.positiony);
 //está función es la ia del fantasma por el momento falta implementar el calculo de la distancia
 ghostYellow.ia = () => iaFantasmal(setInterval, ghostYellow);
@@ -72,9 +78,18 @@ function iaFantasmal(callback, ghost) {
         pacmanlugarx = pacman.positionx;
         pacmanlugary = pacman.positiony;
         // aquí obtengo números aleatorios entre -1 y 1 para que se mueva el fantasma
-        ghost.pospx = calcularDistanciaX(ghost, pacmanlugarx); // esto genera un número aleatorio entre -1 y 1
+        ghost.pospx =    calcularDistanciaX(ghost, pacmanlugarx); // esto genera un número aleatorio entre -1 y 1
         ghost.pospy = calcularDistanciaY(ghost, pacmanlugary); // esto genera un número aleatorio entre -1 y 1
-
+        let pospy = ghost.pospy;
+        let pospx = ghost.pospx;
+        if (seleccionMovimientoGhostx(ghost)) {
+           ghost.pospy = pospy;
+           ghost.pospx = 0;
+        } 
+        if(seleccionMovimientoGhosty(ghost)){
+            ghost.pospx = -pospx
+            ghost.positiony = 0;
+        }
         // aqui miramos si que ha presionado el fantasma
 
         if (ghost.pospx > 0) {
@@ -88,53 +103,109 @@ function iaFantasmal(callback, ghost) {
         } else if (ghost.pospy < 0) {
             ghost.positiony -= velocidadFantasma;
         }
-        // Detectar colisiones con los muros
-        for (var i = 0; i < laberinto1.length; i++) {
-            if (ghost.positionx < laberinto1[i].x + laberinto1[i].width &&
-                ghost.positionx + ghost.tamanoy > laberinto1[i].x &&
-                ghost.positiony < laberinto1[i].y + laberinto1[i].height &&
-                ghost.tamanoy + ghost.positiony > laberinto1[i].y) {
-                colisionx = false;
-                colisiony = false;
-                // Si hay colisión, mover al jugador de vuelta
-                if (ghost.pospx > 0) {
-                    ghost.positionx -= velocidadFantasma;
-                    colisionx = true;
-                } else if (ghost.pospx < 0) {
-                    ghost.positionx += velocidadFantasma;
-                    colisionx = true;
-                }
-                if (ghost.pospy > 0) {
-                    ghost.positiony -= velocidadFantasma;
-                    colisiony = true;
-                } else if (ghost.pospy < 0) {
-                    ghost.positiony += velocidadFantasma;
-                    colisiony = true;
-                }
-                if (colisionx) {
-                    // redirigirBloqueox(ghost, laberinto1[i], pacman)
-                } else if (colisiony) {
-                    // redirigirBloqueoy(ghost, laberinto1[i], pacman)
-                }
-
-            } else {
-                if (ghost.positionx > 600) {
-                    // Si hay colisión, mover al jugador de vuelta
-                    if (ghost.pospx > 0) {
-                        ghost.positionx = 0;
-                    }
-                }
-                if (ghost.positionx < 0) {
-                    // Si hay colisión, mover al jugador de vuelta
-                    if (ghost.pospx < 0) {
-                        ghost.positionx = 590;
-                    }
-                }
-
+        deteccionColision(ghost);
+        deteccionColisionFantasmas(ghost)
+        if (ghost.positionx > 600) {
+            // Si hay colisión, mover al jugador de vuelta
+            if (ghost.pospx > 0) {
+                ghost.positionx = 0;
             }
-
+        }
+        if (ghost.positionx < 0) {
+            // Si hay colisión, mover al jugador de vuelta
+            if (ghost.pospx < 0) {
+                ghost.positionx = 590;
+            }
         }
     }, 110)
+}
+function seleccionMovimientoGhostx (ghost) {
+    if (deteccionColisionFantasmas(ghost)) {
+        if (ghost.pospx > 0) {
+            ghost.pospx = -1;
+        }else if(ghost.pospx<0){
+            ghost.pospx = +1;
+        }
+        if (deteccionColisionFantasmas(ghost)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+function seleccionMovimientoGhosty (ghost) {
+    if (deteccionColisionFantasmas(ghost)|| deteccionColision(ghost)) {
+        if (ghost.pospy > 0) {
+            ghost.pospy = -1;
+        }else if(ghost.pospy<0){
+            ghost.pospy = +1;
+        }
+        if (deteccionColisionFantasmas(ghost)||deteccionColision(ghost)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+function deteccionColisionFantasmas(ghost){
+    fantasmas = crearArrayFantasma();
+    avanceadicionalx = 0;
+    avanceadicionaly = 0
+    if (ghost.pospx > 0) {
+        avanceadicionalx += velocidadFantasma;
+    }else if(ghost.pospx<0){
+        avanceadicionalx -= velocidadFantasma;
+    }
+
+    if (ghost.pospy>0) {
+        avanceadicionaly += velocidadFantasma
+    }else if (ghost.pospy<0) {
+        avanceadicionaly -= velocidadFantasma
+    }
+    for (let i = 0; i < fantasmas.length; i++) {
+        if (ghost.id != fantasmas[i].id) {
+          
+            if(ghost.positionx +avanceadicionalx  < fantasmas[i].positionx+fantasmas[i].tamanox&&
+                (ghost.positionx+avanceadicionalx)+ghost.tamanox > fantasmas[i].positionx&&
+                ghost.positiony+avanceadicionaly < fantasmas[i].positiony+fantasmas[i].tamanoy&&
+                (ghost.positiony+avanceadicionaly)+ghost.tamanoy > fantasmas[i].positiony){
+                // Si hay colisión, mover al jugador de vuelta
+            
+                return true; 
+
+                }else{
+                    return false;
+                }
+        }
+        
+    }
+}
+function deteccionColision (ghost) {
+    fantasmas = crearArrayFantasma();
+    avanceadicionalx = 0;
+    avanceadicionaly = 0
+    if (ghost.pospx > 0) {
+        avanceadicionalx += velocidadFantasma;
+    }else if(ghost.pospx<0){
+        avanceadicionalx -= velocidadFantasma;
+    }
+
+    if (ghost.pospy>0) {
+        avanceadicionaly += velocidadFantasma
+    }else if (ghost.pospy<0) {
+        avanceadicionaly -= velocidadFantasma
+    }
+    // Detectar colisiones con los muros
+    for (var i = 0; i < laberinto1.length; i++) {
+        if (ghost.positionx +avanceadicionalx < laberinto1[i].x + laberinto1[i].width &&
+            (ghost.positionx+ avanceadicionalx)+ ghost.tamanox > laberinto1[i].x &&
+            ghost.positiony + avanceadicionaly < laberinto1[i].y + laberinto1[i].height &&
+            (ghost.tamanoy +avanceadicionaly)+ ghost.positiony > laberinto1[i].y) {
+            
+            return true;
+
+    }else return false;
+}
 }
 
 function calcularDistanciaX(ghost, pacmanx) {
@@ -152,24 +223,28 @@ function calcularDistanciaY(ghost, pacmany) {
 }
 //redirigir si hay un bloqueo de la parte x,Y para que vaya arriba o abajo según estas funciones
 //redirigir x según la distancia del muro
-function redirigirBloqueox(ghost, laberinto, pacman) {
+function redirigirBloqueox(ghost, laberinto) {
     distanciaA = ghost.positiony - laberinto.y;
 
     distanciaB = (ghost.positiony + ghost.tamanoy) - (laberinto.y + laberinto.height)
 
-    if (distanciaA < distanciaB || (ghost.positiony > pacman.positiony && ghost.positiony != pacman.positiony)) {
+    if (distanciaA < distanciaB ) {
         ghost.positiony -= velocidadFantasma;
+        deteccionColision(ghost)
     } else {
         ghost.positiony += velocidadFantasma;
+        deteccionColision(ghost)
     }
 }
 //redirigir y según la distancia del muro
-function redirigirBloqueoy(ghost, laberinto, pacman) {
+function redirigirBloqueoy(ghost, laberinto) {
     distanciaA = ghost.positionx - laberinto.x;
     distanciaB = (ghost.positionx + ghost.tamanox) - (laberinto.x + laberinto.width)
-    if (distanciaA < distanciaB || (ghost.positionx > pacman.positionx && ghost.positionx != pacman.positionx)) {
+    if (distanciaA < distanciaB) {
         ghost.positionx -= velocidadFantasma;
+        
     } else {
         ghost.positionx += velocidadFantasma;
+        
     }
 }

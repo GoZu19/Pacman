@@ -28,10 +28,10 @@ const laberinto1 = [
     { x: 140, y: 140, width: 150, height: 50 },
     { x: 310, y: 140, width: 150, height: 50 },
     //muro base inferior pacman
-    { x: 140, y: 320, width: 320, height: 15 },
-    { x: 140, y: 360, width: 320, height: 25 },
+    { x: 140, y: 320, width: 320, height: 70 },
+    
     //muro base superior pacman:
-    { x: 140, y: 230, width: 320, height: 15 },
+    { x: 140, y: 210, width: 320, height: 35 },
     { x: 140, y: 275, width: 320, height: 25 }
 
 ];
