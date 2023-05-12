@@ -2,8 +2,44 @@ canvas {
     display: block;
     margin: 0 auto;
     border: 2px solid black;
+    background-color: antiquewhite;
 }
 
 body {
-    background-color: antiquewhite;
+
+}
+
+/* COLOR DE LA CABECERA- ---- */
+.imagenCabecera{
+    width: 300px;
+    height: 200px;
+
+}
+.cabeceraColor{
+    background-color: rgb(221, 220, 220);
+}
+.cabeceraLetra{
+    font-family: 'Barlow', sans-serif;
+    font-family: 'Jost', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Righteous';
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 5em;
+    color: darkorange;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+    
+}
+.cabeceraLetraSubtema{
+    font-family: 'Barlow', sans-serif;
+    font-family: 'Jost', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Righteous';
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 2em;
+    color: rgb(0, 0, 0);
+    display: flex;
+  align-items: center;
+  justify-content: center;
 }
