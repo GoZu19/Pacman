@@ -7,6 +7,8 @@ pacman.positiony = 300;
 pacman.tamanox = 20;
 pacman.tamanoy = 20;
 pacman.puntuacion =0;
+pacman.pillado = false;//esto es si fue pillado por los fantasmas
+pacman.estadoPartida=false;//esto si la partida está terminada
 pacman.src = "pacman_image/Pacman_right.svg"
 pacman.onload = function() {
 
@@ -14,8 +16,46 @@ pacman.onload = function() {
     contextcanvas.drawImage(pacman, pacman.positionx, pacman.positiony);
 
 }
-// Mover al jugador con las teclas de flecha
+//función para saber si fue pillado por los fantasmas
+function fantasmaPillaPacman () {
+    fantasmas = crearArrayFantasma();
+    
+    for (let i = 0; i < fantasmas.length; i++) {
+            //compruebo la colision de los fantasmas
+            if (pacman.positionx < fantasmas[i].pospx + fantasmas[i].tamanox &&
+                pacman.positionx + pacman.tamanox > fantasmas[i].pospx &&
+                pacman.positiony < fantasmas[i].pospy + fantasmas[i].tamanoy &&
+                pacman.positiony + pacman.tamanoy > fantasmas[i].pospy) {
+                // si hubo colisión con algún fantasma tendrá que colocar pillado
+                pacman.pillado =true;
+                cartelderrota= {
+                x:150,
+                y:150,
+                width:300,
+                height:300
+                }
+                //rectangulo de fondo
+                contextcanvas.fillStyle = "yellow";
+                contextcanvas.fillRect(cartelderrota.x, cartelderrota.y, cartelderrota.width, cartelderrota.height);
+                //texto del rectangulo:
+                contextcanvas.font = "20px Arial";
+                contextcanvas.fillStyle = "#FFFFFF"
+                contextcanvas.fillText("Está es tu puntuación: "+pacman.puntuacion, 190, 190);
+                clearInterval(iaRed);
+                clearInterval(iaPink);
+                clearInterval(iaSky);
+                clearInterval(iaYellow);
+                document.removeEventListener('keydown',teclasPacman);
+                cancelAnimationFrame(idanimacion);
+                
+            } 
 
+    }
+    
+}
+
+
+//para ver si colisiono con un punto y además guardar la puntuación con un promise
 function colisionPunto () {
     return new Promise((resolve,reject)=>{
         for (let i = 0; i < puntos.length; i++) {
@@ -31,8 +71,13 @@ function colisionPunto () {
     });
 }
 
+function moverPacman () {
+    
+
 // Mover al jugador con las teclas de flecha y detectar colisiones con los muros
-document.addEventListener("keydown", function(event) {
+document.addEventListener("keydown", teclasPacman);
+}
+function teclasPacman(event) {
     if (event.keyCode === 37) {
         pacman.src = "pacman_image/Pacman_left.svg"
         pacman.positionx -= 10;
@@ -79,4 +124,5 @@ document.addEventListener("keydown", function(event) {
             }
         }
     }
-});
+    event.preventDefault();
+}

@@ -11,27 +11,25 @@ pacman.onload();
 //cargar fantastmas:
 //fantasma rojo
 ghostRed.onload();
-ghostRed.ia();
+iaRed=ghostRed.ia();
 //fantasma rosada:
 ghostPink.onload();
-ghostPink.ia();
+iaPink=ghostPink.ia();
 //fantasma celeste:
 ghostSky.onload();
-ghostSky.ia();
+iaSky=ghostSky.ia();
 //fantasma amarillo:
 ghostYellow.onload();
-ghostYellow.ia();
+iaYellow=ghostYellow.ia();
 
 
-
+moverPacman();
 
 // Bucle del juego
 function gameLoop() {
     // Limpiar el canvas
     contextcanvas.clearRect(0, 0, canvas.width, canvas.height);
-
-   
-
+    
     //pintar los puntos
     drawPoints();
     //hacer aparecer el pacma
@@ -55,7 +53,9 @@ function gameLoop() {
      //comprobar puntuación del jugador
      //está en pacman.js
      colisionPunto();
-     
-    requestAnimationFrame(gameLoop);
+    //comprobar si el pacman le han pillado está en pacman.js:
+    fantasmaPillaPacman();
+   
+    var idanimacion = requestAnimationFrame(gameLoop);
 }
 gameLoop();
