@@ -86,35 +86,43 @@ function iaFantasmal(callback, ghost) {
             // Si hay colisión, mover al jugador de vuelta
             if (ghost.pospx > 0) {
                 ghost.positionx = 0;
+                ghost.pospx = 0;
             }
         }
         if (ghost.positionx < 0) {
             // Si hay colisión, mover al jugador de vuelta
             if (ghost.pospx < 0) {
                 ghost.positionx = 590;
+                ghost.pospx = 590;
             }
         }
-    }, 110)
+    }, 75)
 }
 
 
 //para que se mueva el fantasma:
 function movimientoFantasma(ghost) {
+
+    //para saber donde está el pacman para seguirlo en la misma recta vertical
     if(ghost.positiony == pacman.positiony){
+        //sí está puede moverse a la derecha o izquierda según donde este el pacman
         if (pacman.positionx > ghost.positionx) {
             ghost.direccion = "DERECHA";
         }else{
             ghost.direccion = "IZQUIERDA";
         }
     }
-    if(ghost.positionx == pacman.positionx){
+    //igualmente aquí cuando en la misma recta de horizontal lo cazará
+    if(ghost.positionx == pacman.positionx ){
+        //aquí mira donde está para cazarlo si arriba o abajo
         if (pacman.positiony > ghost.positiony) {
             ghost.direccion = "ABAJO";
         }else{
             ghost.direccion = "ARRIBA";
         }
     }
-    
+    //aquí añade a las variables temporales para saber si colisionaría en un momento para ahorrar animación
+    // para esto tiene que saber que dirección está llendo el fantasma
     switch (ghost.direccion) {
         case "DERECHA":
             ghost.pospx += velocidadFantasma;
@@ -131,7 +139,9 @@ function movimientoFantasma(ghost) {
         default:
             break;
     }
+    //mira si hubo colisión en alguno de ellos para volverle en la misma hubicación, e intentar que vayan a otro camino
     if (deteccionColision(ghost)||deteccionColisionFantasmas(ghost)) {
+        //aquí si hubo colisión y es para cambiar de ruta según donde este llendo
         switch (ghost.direccion) {
             case "DERECHA":
                 ghost.pospx -= velocidadFantasma;
@@ -154,6 +164,8 @@ function movimientoFantasma(ghost) {
            }
            
     } else {
+        //aquí si no hubo colisión aplica lo mismo la variable temporal a la oficial la que hace mover el fantasma
+        //es decir recargar su imagen según donde está ubicado 
         switch (ghost.direccion) {
             case "DERECHA":
                 ghost.positionx = ghost.pospx;
@@ -189,18 +201,19 @@ function deteccionColisionFantasmas(ghost) {
     
     for (let i = 0; i < fantasmas.length; i++) {
         if (ghost.id != fantasmas[i].id) {
-
+            //mria colisión entre fantasmas pero que no sean el mismo para saber si han colisionado segun su id en el if
             if (ghost.pospx < fantasmas[i].pospx + fantasmas[i].tamanox &&
                 ghost.pospx + ghost.tamanox > fantasmas[i].pospx &&
                 ghost.pospy < fantasmas[i].pospy + fantasmas[i].tamanoy &&
                 ghost.pospy + ghost.tamanoy > fantasmas[i].pospy) {
-                // Si hay colisión, mover al jugador de vuelta
+                // aumento +1 para saber si hubo ya más de una colision
                
                 numColision += 1;
             } 
         }
 
     }
+    //verifico el número de colision para saber si hubo colision
     if (numColision>0) {
         colision = true;
     } else {
@@ -218,24 +231,11 @@ function deteccionColision(ghost) {
             ghost.pospx + ghost.tamanoy > laberinto1[i].x &&
             ghost.pospy < laberinto1[i].y + laberinto1[i].height &&
             ghost.tamanoy + ghost.pospy > laberinto1[i].y) {
-            
+            // aumento +1 para saber si hubo ya más de una colision
             numColision +=1;
-        } else {
-            if (ghost.positionx > 600) {
-                // Si hay colisión, mover al jugador de vuelta
-                if (event.keyCode === 39) {
-                    ghost.positionx = 0;
-                }
-            }
-            if (ghost.positionx < 0) {
-                // Si hay colisión, mover al jugador de vuelta
-                if (event.keyCode === 37) {
-                    ghost.positionx = 590;
-                }
-            }
-            
-        }
+        } 
     }
+    //verifico el número de colision para saber si hubo colision
     if (numColision>0) {
         colision = true;
     } else {

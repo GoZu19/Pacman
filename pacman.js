@@ -6,6 +6,7 @@ pacman.positionx = 290;
 pacman.positiony = 300;
 pacman.tamanox = 20;
 pacman.tamanoy = 20;
+pacman.puntuacion =0;
 pacman.src = "pacman_image/Pacman_right.svg"
 pacman.onload = function() {
 
@@ -15,7 +16,20 @@ pacman.onload = function() {
 }
 // Mover al jugador con las teclas de flecha
 
-
+function colisionPunto () {
+    return new Promise((resolve,reject)=>{
+        for (let i = 0; i < puntos.length; i++) {
+            if (pacman.positionx < puntos[i].x + puntos[i].width &&
+                pacman.positionx + pacman.tamanoy > puntos[i].x &&
+                pacman.positiony < puntos[i].y + puntos[i].height &&
+                pacman.tamanoy + pacman.positiony > puntos[i].y) {
+                pacman.puntuacion += 1;
+                puntos.splice(i,1)
+            }
+            
+        }
+    });
+}
 
 // Mover al jugador con las teclas de flecha y detectar colisiones con los muros
 document.addEventListener("keydown", function(event) {
