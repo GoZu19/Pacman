@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -56,7 +56,30 @@
                         </div>
                         <div class="row justify-content-md-center">
                             <div class="col">
-                                <button type="button" class="btn btn-outline-warning" style="margin-top:5px">Reiniciar Partida</button>
+                                <button type="button" onclick="reiniciarJuego()" class="btn btn-outline-warning" style="margin-top:5px">Reiniciar Partida</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="menuwin" class="menu_win">
+        <div class="container-fluid d-flex text-center ">
+            <div class="content justify-content-center mx-auto">
+                <div class="row menu_dimensiones align-items-center bg_color_menu_lose">
+                    <div class="col fonts_menu_lose">
+                        <div class="row justify-content-md-center">
+                           ¡Ganaste! tu puntuación es: <span id="puntuacion_win"></span> <br>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="col">
+                                <button type="button" onclick="continuar()" class="btn btn-outline-success">Continuar</button>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="col">
+                                <button type="button" class="btn btn-outline-danger" style="margin-top:5px">Ir al Menú Principal</button>
                             </div>
                         </div>
                     </div>

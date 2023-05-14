@@ -39,7 +39,8 @@ function fantasmaPillaPacman () {
             menulose.style.top = (innerHeight/2)-115+"px";
             menulose.style.left = (innerWidth/2)-150+"px";
             
-            
+
+            //limpiar los intervalos para que no sigan consumiento memoria
             clearInterval(iaRed);
             clearInterval(iaPink);
             clearInterval(iaSky);
@@ -50,6 +51,34 @@ function fantasmaPillaPacman () {
         } 
 
     }
+    
+}
+function pacmanGana() {
+    
+    
+    if (puntos.length==0) {
+        //creación del menú:
+        //texto del rectangulo:
+        puntuacionwin = document.getElementById("puntuacion_win");
+        puntuacionwin.innerHTML=pacman.puntuacion;
+
+        //crear menú sobre el canvas de derrota
+        menuwin = document.getElementById("menuwin");
+        menuwin.style.display = "block";
+        menuwin.style.top = (innerHeight/2)-115+"px";
+        menuwin.style.left = (innerWidth/2)-150+"px";
+        
+
+        //limpiar los intervalos para que no sigan consumiento memoria
+        clearInterval(iaRed);
+        clearInterval(iaPink);
+        clearInterval(iaSky);
+        clearInterval(iaYellow);
+        document.removeEventListener('keydown',teclasPacman);
+        cancelAnimationFrame(idanimacion);
+        
+    } 
+    
     
 }
 

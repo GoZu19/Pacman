@@ -1,4 +1,5 @@
-var puntos = [
+//función para crear los puntos, es para cuando se reincie la partida pueda volver generar los puntos
+crearPuntos = ()=>[
     //puntos del lado exterior izquierdo
     { x: 55, y: 70, width: 10, height: 10 },
     { x: 55, y: 110, width: 10, height: 10 },
@@ -120,7 +121,7 @@ var puntos = [
      { x: 435, y: 395, width: 10, height: 10 }
 
 ];
-
+var puntos = crearPuntos();
 function drawPoints() {
     for (var i = 0; i < puntos.length; i++) {
         //el fillstyle sirve para dar estilo a lo que vayamos hacer, no solo es para pintar también es para

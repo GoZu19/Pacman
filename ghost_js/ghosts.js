@@ -1,4 +1,4 @@
-const velocidadFantasma = 10;
+const velocidadFantasma = 5;
 // con el new Image le doy propiedas a una image pero aún no está en el canvas
 const ghostRed = new Image();
 var crearArrayFantasma = () => [ghostRed, ghostPink, ghostSky, ghostYellow]
@@ -77,7 +77,8 @@ ghostYellow.ia = () => iaFantasmal(setInterval, ghostYellow);
 
 //función de la inteligencia artificial de los fantasma, fue separada ya que va ver muchos fantasmas para ahorrar lineas de código adicional
 function iaFantasmal(callback, ghost) {
-    callback(function () {
+    
+    return callback(function () {
         //función para que se mueva el fantasma
         
         movimientoFantasma(ghost)
