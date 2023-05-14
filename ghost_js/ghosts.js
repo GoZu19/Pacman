@@ -1,4 +1,6 @@
-const velocidadFantasma = 5;
+velocidadFantasma = 10;
+intervaltime = 75;
+nivelDificultadvar= "Normal";
 // con el new Image le doy propiedas a una image pero aún no está en el canvas
 const ghostRed = new Image();
 var crearArrayFantasma = () => [ghostRed, ghostPink, ghostSky, ghostYellow]
@@ -97,7 +99,7 @@ function iaFantasmal(callback, ghost) {
                 ghost.pospx = 590;
             }
         }
-    }, 75)
+    }, intervaltime)
 }
 
 

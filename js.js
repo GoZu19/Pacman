@@ -5,13 +5,18 @@ iaYellow =0;
 iaSky = 0;
 iaRed = 0;
 iaPink = 0;
-//puntuación del juego:
+//mostrar puntuación del juego:
 function puntuacion () {
     contextcanvas.font = "20px Arial";
     contextcanvas.fillStyle = "#FFFFFF"
-    contextcanvas.fillText("Puntuación: "+pacman.puntuacion, 400, 35);
+    contextcanvas.fillText("Puntuación: "+pacman.puntuacion, 450, 35);
 }
-
+//para mostrar en la pantalla que nivel de dificultad esta
+function mostrarDificultad () {
+    contextcanvas.font = "20px Arial";
+    contextcanvas.fillStyle = "#FFFFFF"
+    contextcanvas.fillText("Nivel de dificultad: "+nivelDificultadvar, 150, 35);
+}
 function cargarJuego () {
     //cargar el pacman
     pacman.onload();
@@ -38,6 +43,7 @@ function reiniciarJuego () {
     pacman.positionx = 290;
     pacman.positiony = 300;
     pacman.puntuacion=0;
+    pacman.src = "pacman_image/Pacman_right.svg";
     //reiniciar los valores de los fantasmas
     //fantasma rojo:
     ghostRed.positionx = 280;
@@ -77,6 +83,7 @@ function continuar () {
     //reiniciar los valores del pacman:
     pacman.positionx = 290;
     pacman.positiony = 300;
+    pacman.src = "pacman_image/Pacman_right.svg";
     //reiniciar los valores de los fantasmas
     //fantasma rojo:
     ghostRed.positionx = 280;
@@ -115,6 +122,7 @@ function continuar () {
 // Bucle del juego
 function gameLoop() {
     // Limpiar el canvas
+    
     contextcanvas.clearRect(0, 0, canvas.width, canvas.height);
     //comprobar si el pacman ha ganado:
     pacmanGana()
@@ -129,6 +137,8 @@ function gameLoop() {
     
     //cargar la puntuación
     puntuacion(); 
+    //mostrar dificultad:
+    mostrarDificultad();
     //hacer aparecer los fantasmas:
     //fantasma rojo:
     ghostRed.onload();
@@ -158,13 +168,14 @@ function gameLoop() {
         
     }else{
         if (!iniciado) {
-            
+        
             //esto es para ver si ya está iniciado para no iniciar para no generar mucho setIntervals
             cargarJuego();
             moverPacman();
             iniciado=true;
+            
         }
+        
         idanimacion = requestAnimationFrame(gameLoop);
     }
 }
-gameLoop();
