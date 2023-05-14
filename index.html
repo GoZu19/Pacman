@@ -141,7 +141,7 @@
                         <div class="row justify-content-md-center">
                             <!-- boton de historial -->
                             <div class="col">
-                                <button class="btn btn-primary" style="margin-top:5px;">Historial</button>
+                                <button id="historialbtn" class="btn btn-primary" style="margin-top:5px;">Historial</button>
                             </div>
                         </div>
                     </div>
@@ -149,9 +149,34 @@
             </div>
         </div>
     </div>
+    <!-- menú historial de puntuación-->
+    <div id="historial" class="menu_main">
+        <div class="container-fluid d-flex text-center ">
+            <div class="content justify-content-center mx-auto">
+                <div class="row menuMain_dimensiones  bg_color_menu_lose">
+                    <div class="col fonts_menu_lose">
+                        <div class="row">
+                            <div>
+                                Historial
+                            </div>
+                            
+                            <!-- 
+                                aquí se listará el historial y utilizará la clase: align-items-center para cetrar 
+                            -->
+                            <div id="datosHistorial">
 
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- tiene que ir este orden por que si no carga bien por orden de ejecución
     puede decir que falte un elemento que no se ha creado -->
+    <script src="localstorage.js"></script>
     <script src="canvas.js"></script>
     <script src="puntos.js"></script>
     <script src="pacman.js"></script>

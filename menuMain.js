@@ -14,11 +14,13 @@ function seleccionDificultad (num) {
         //este es el nivel facil
         case 1:
             velocidadFantasma = 5;
+            intervaltime =75;
             nivelDificultadvar="Fácil";
             break;
         //nivel normal:
         case 2:
             velocidadFantasma = 10;
+            intervaltime =75;
             nivelDificultadvar="Normal";
         break;
         //nivel dificil
