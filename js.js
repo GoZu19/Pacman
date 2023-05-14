@@ -5,23 +5,26 @@ function puntuacion () {
     contextcanvas.fillText("Puntuación: "+pacman.puntuacion, 400, 35);
 }
 
-//cargar el pacman
-pacman.onload();
+function cargarJuego () {
+    //cargar el pacman
+    pacman.onload();
 
-//cargar fantastmas:
-//fantasma rojo
-ghostRed.onload();
-iaRed=ghostRed.ia();
-//fantasma rosada:
-ghostPink.onload();
-iaPink=ghostPink.ia();
-//fantasma celeste:
-ghostSky.onload();
-iaSky=ghostSky.ia();
-//fantasma amarillo:
-ghostYellow.onload();
-iaYellow=ghostYellow.ia();
+    //cargar fantastmas:
+    //fantasma rojo
+    ghostRed.onload();
+    iaRed=ghostRed.ia();
+    //fantasma rosada:
+    ghostPink.onload();
+    iaPink=ghostPink.ia();
+    //fantasma celeste:
+    ghostSky.onload();
+    iaSky=ghostSky.ia();
+    //fantasma amarillo:
+    ghostYellow.onload();
+    iaYellow=ghostYellow.ia();
 
+}
+cargarJuego();
 
 moverPacman();
 

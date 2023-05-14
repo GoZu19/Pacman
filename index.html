@@ -9,32 +9,62 @@
     <!-- google fonts: -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@1,500;1,800&family=Jost:ital,wght@0,200;0,300;1,200&family=Open+Sans&family=Righteous&family=Titillium+Web:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@1,500;1,800&family=Jost:ital,wght@0,200;0,300;1,200&family=Open+Sans&family=Righteous&family=Titillium+Web:ital,wght@1,600&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <!-- css y boostrap -->
     <link rel="stylesheet" href="css.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
 <body>
     <header class="cabeceraColor">
         <div class="container text-center">
             <div class="row">
-            <div class="col cabeceraLetra">
-                Pacman
-            </div>
-            <div class="col-6 cabeceraLetraSubtema">
+                <div class="col cabeceraLetra">
+                    Pacman
+                </div>
+                <div class="col-6 cabeceraLetraSubtema">
                     Juego hecho con JS
-              </div>
-            <div class="col">
-                <img src="image_page/cabecera.jpg" alt="Fantasma" class="imagenCabecera">
-            </div>
+                </div>
+                <div class="col">
+                    <img src="image_page/cabecera.jpg" alt="Fantasma" class="imagenCabecera">
+                </div>
             </div>
         </div>
     </header>
     <div>
-        
+
         <canvas id="canvas"></canvas>
     </div>
+    <div id="menulose" class="menu_lose">
+        <div class="container-fluid d-flex text-center ">
+            <div class="content justify-content-center mx-auto">
+                <div class="row menu_dimensiones align-items-center bg_color_menu_lose">
+                    <div class="col fonts_menu_lose">
+                        <div class="row justify-content-md-center">
+                           Perdiste tu puntuación es: <span id="puntuacion"></span>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="col">
+                                <button type="button" class="btn btn-outline-danger">Ir al Menú Principal</button>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="col">
+                                <button type="button" class="btn btn-outline-warning" style="margin-top:5px">Reiniciar Partida</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- tiene que ir este orden por que si no carga bien por orden de ejecución
     puede decir que falte un elemento que no se ha creado -->
     <script src="canvas.js"></script>
@@ -43,7 +73,9 @@
     <script src="/ghost_js/ghosts.js"></script>
     <script src="laberinto.js"></script>
     <script src="js.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

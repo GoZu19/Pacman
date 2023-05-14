@@ -43,3 +43,21 @@ body {
   align-items: center;
   justify-content: center;
 }
+.menu_lose{
+  position: absolute;
+  top: 300px;
+  left:600px;
+  display: none;
+  z-index: 1;
+}
+.menu_dimensiones{
+  width: 300px;
+  height: 300px;
+}
+.bg_color_menu_lose{
+  
+  background-color: rgb(152, 152, 152);
+}
+.fonts_menu_lose{
+  font-family: 'Righteous', cursive;
+}
