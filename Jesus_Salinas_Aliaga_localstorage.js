@@ -66,7 +66,7 @@ function mostrarHistorialCargado () {
 historialbtn = document.getElementById("historialbtn");
 historialbtn.addEventListener("click",mostrarHistorialCargado)
 /* función de subir datos lo que tenga actualmente el pacman ya que el usuario ha abandonado*/
-function subirDatosJugador(){
+async function subirDatosJugador(){
     array = actualizarDatos();
     fechaActual = new Date();
 

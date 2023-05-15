@@ -16,31 +16,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <!-- css y boostrap -->
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="Jesus_Salinas_Aliaga_css.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
 <body>
     <!-- cabecera del juego -->
-    <header class="cabeceraColor">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col cabeceraLetra">
-                    Pacman
-                </div>
-                <div class="col-6 cabeceraLetraSubtema">
-                    Juego hecho con JS
-                </div>
-                <div class="col">
-                    <img src="image_page/cabecera.jpg" alt="Fantasma" class="imagenCabecera">
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- canvas -->
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom fonts_menu_lose cabeceraColor">
+        <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+          <img src="image_page/cabecera.jpg" alt="Logo Cabecera" style="height: 165px;">
+          <span class="fs-4 ">Pacman</span>
+        </a>
+  
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="https://github.com/GoZu19/Pacman" class="nav-link active" aria-current="page" title="ir al GitHub">GitHub</a></li>
+        </ul>
+      </header>
+    
     <div>
-
+<!-- canvas -->
         <canvas id="canvas"></canvas>
     </div>
     <!-- comienzo de menús que puede utilizar el juego -->
@@ -55,7 +50,8 @@
                         </div>
                         <div class="row justify-content-md-center">
                             <div class="col">
-                                <button id="irMenu_lose" type="button" class="btn btn-outline-danger">Ir al Menú Principal</button>
+                                <button id="irMenu_lose" type="button" class="btn btn-outline-danger">Ir al Menú
+                                    Principal</button>
                             </div>
                         </div>
                         <div class="row justify-content-md-center">
@@ -86,7 +82,8 @@
                         </div>
                         <div class="row justify-content-md-center">
                             <div class="col">
-                                <button id="irMenu_win" type="button" class="btn btn-outline-danger" style="margin-top:5px">Ir al Menú
+                                <button id="irMenu_win" type="button" class="btn btn-outline-danger"
+                                    style="margin-top:5px">Ir al Menú
                                     Principal</button>
                             </div>
                         </div>
@@ -103,7 +100,7 @@
                     <div class="col fonts_menu_lose">
                         <div class="row justify-content-md-center">
                             <!-- card view -->
-                            <div  style="width: 17rem;">
+                            <div style="width: 17rem;">
                                 <img src="image_page/pacman.png" class="card-img-top" alt="Pacman">
                                 <div class="card-body">
                                     <p class="card-text">Pacman - creado por Jesús Guillemro Salinas</p>
@@ -122,22 +119,25 @@
                             <div class="col">
                                 <!-- Boton de selección de nivel o dificultad -->
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-info dropdown-toggle"
-                                        data-bs-toggle="dropdown" aria-expanded="false" style="margin-top:5px;">
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false" style="margin-top:5px;">
                                         Dificultad
                                     </button>
                                     <!-- seleccion de dificultad se ha utilizado boostrap -->
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" onclick="seleccionDificultad(1)" href="#">Facil</a></li>
+                                        <li><a class="dropdown-item" onclick="seleccionDificultad(1)" href="#">Facil</a>
+                                        </li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" onclick="seleccionDificultad(2)" href="#">Normal</a></li>
+                                        <li><a class="dropdown-item" onclick="seleccionDificultad(2)"
+                                                href="#">Normal</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" onclick="seleccionDificultad(3)" href="#">Fumas Porros</a></li>
-                                        
+                                        <li><a class="dropdown-item" onclick="seleccionDificultad(3)" href="#">Fumas
+                                                Porros</a></li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -145,13 +145,15 @@
                         <div class="row justify-content-md-center">
                             <!-- boton de historial -->
                             <div class="col">
-                                <button id="historialbtn" class="btn btn-primary" style="margin-top:5px;">Historial</button>
+                                <button id="historialbtn" class="btn btn-primary"
+                                    style="margin-top:5px;">Historial</button>
                             </div>
                         </div>
                         <div class="row justify-content-md-center">
                             <!-- boton de Instrucciones -->
                             <div class="col">
-                                <button id="btn_instrucciones" class="btn btn-dark" style="margin-top:5px;">Instrucciones</button>
+                                <button id="btn_instrucciones" class="btn btn-dark"
+                                    style="margin-top:5px;">Instrucciones</button>
                             </div>
                         </div>
                     </div>
@@ -169,20 +171,21 @@
                             <div>
                                 Historial
                             </div>
-                            
+
                             <!-- 
                                 aquí se listará el historial y utilizará la clase: align-items-center para cetrar 
                             -->
                             <div id="datosHistorial">
 
                             </div>
-                            
+
                             <div class="row justify-content-end mt-auto">
                                 <div class="col-auto">
-                                    <button id="regresarMenuM_historial" type="button" class="btn btn-primary">Volver al Menú</button>
+                                    <button id="regresarMenuM_historial" type="button" class="btn btn-primary">Volver al
+                                        Menú</button>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -207,7 +210,8 @@
                         </div>
                         <div class="row justify-content-md-center">
                             <div class="col">
-                                <button onclick="toastSalir()" type="button" class="btn btn-outline-danger" style="margin-top:5px">Ir al Menú
+                                <button onclick="toastSalir()" type="button" class="btn btn-outline-danger"
+                                    style="margin-top:5px">Ir al Menú
                                     Principal</button>
                             </div>
                         </div>
@@ -217,18 +221,19 @@
         </div>
     </div>
     <!-- alert del cerrado -->
-    <div id="salirToast" class="toast salirtoast bg-info-subtle fonts_menu_lose" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="salirToast" class="toast salirtoast bg-info-subtle fonts_menu_lose" role="alert" aria-live="assertive"
+        aria-atomic="true">
         <div class="toast-body">
-          Estas seguró de salir al menú principal, la puntuación se guardará.
-          <div class="mt-2 pt-2 border-top">
-            <button type="button" onclick="cargarMenuM_pausa ()" class="btn btn-primary btn-sm">Sí</button>
-            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Cancelar</button>
-          </div>
+            Estas seguró de salir al menú principal, la puntuación se guardará.
+            <div class="mt-2 pt-2 border-top">
+                <button type="button" onclick="cargarMenuM_pausa ()" class="btn btn-primary btn-sm">Sí</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Cancelar</button>
+            </div>
         </div>
-      </div>
+    </div>
 
-      <!-- Mostrar instrucciones:-->
-    
+    <!-- Mostrar instrucciones:-->
+
     <div id="instrucciones" class="menu_instrucciones">
         <div class="container-fluid d-flex text-center ">
             <div class="content justify-content-center mx-auto">
@@ -238,40 +243,142 @@
                             <div>
                                 Instrucciones
                             </div>
-                            
+
                             <!-- 
                                 es el Texto de las  intrucciones 
                             -->
                             <div style="color: darkblue;">
-                                El juego se trata de comer los puntos y hacer el mejor puntaje, mueves con las flechitas del teclado, 
-                                además si pulsas la tecla "esc" pausas el juego, si sales del juego guardará tu mejor puntuación. <br>
-                                Tienes tres dificultades: facil, normal y fumas porros el fumas porros es cuando los fantasmas se lo han fumado. <br>
+                                El juego se trata de comer los puntos y hacer el mejor puntaje, mueves con las flechitas
+                                del teclado,
+                                además si pulsas la tecla "esc" pausas el juego, si sales del juego guardará tu mejor
+                                puntuación. <br>
+                                Tienes tres dificultades: facil, normal y fumas porros el fumas porros es cuando los
+                                fantasmas se lo han fumado. <br>
                                 podrás tener el mejor puntaje?.
                                 <img src="image_page/pacmaninst.png" class="pacman_tamano" alt="Pacman">
                             </div>
-                            
+
                             <div class="row justify-content-end mt-auto">
                                 <div class="col-auto">
-                                    <button id="regresarMenuM_instruccion" type="button" class="btn btn-primary">Volver al Menú</button>
+                                    <button id="regresarMenuM_instruccion" type="button" class="btn btn-primary">Volver
+                                        al Menú</button>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- aquí termina el uso de menú apartir de abajo utilizamos el ya todo el body para la página  -->
+    <!-- aquí se utiliza se utiliza un complemento de boostrap para especificar cosas sobre el juego -->
+    <div class="accordion" id="accordionExample" style="margin-top: 610px;">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+             Pacman
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Pacman</strong> para realizar este juego se tuvo que utilizar herrramientas como <strong>Boostrap</strong> para los menús para que se vea super cookie, entonces puedes interactuar
+              o implementar cosas nuevas sobre el menú tocando en el html en los apartados de los menús.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <strong>guardar Partida</strong>
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>guardado de partida</strong> El guardado de partida tiene como uso el localStorage para guardar los mejores puntaje así que quieres parecer el tablero tendrás sumar tanto puntos como puedas, eso sí los puntajes se guardan cuando te comen, cuando
+                cuando sales hacia el menú principal, y tienes las intrucciones del juego en el menú principal
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <strong> Nivel de dificultad</strong>
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>Nivel de dificultad</strong> se compone en 3 nivel: <strong>facil</strong> que este nivel tu tienes ventaja por que tu vas más rápido. <br>
+            <strong>Normal</strong>los fantasmas y tu van a la misma velocidad entonces ahí es donde depende de ti. <br>
+            <strong>Fumas Porros</strong> este nivel su nombre viene por que los fantasmas se fumaron un porro y estan así de loco tendrás que esforzarte si quieres ganar
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- se añade un boostrap para el carrusel: -->
+      <div id="carouselExampleCaptions" class="carousel slide" >
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="image_page/carrusel1.jpg" class="d-block w-100" alt="imagepacmancarrusel" style="height: 900px;">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Pacman</h5>
+              <p style="color:red">pacman el juego más completo para aprender.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="image_page/carrusel2.jpg" class="d-block w-100" alt="imagepacmancarrusel2" style="height: 900px;">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Velocidad</h5>
+              <p>la velocidad es alterado por el nivel de difcultad.</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="image_page/carrusel3.jpg" class="d-block w-100" alt="imagepacmancarruse3" style="height: 900px;">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Puntos</h5>
+              <p>Hay que ser el número uno para eso hay que obtener la puntuación más alta.</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <!-- footer -->
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top fonts_menu_lose piePagina" style="font-size: 18px; 
+      margin-bottom:0px !important;
+      margin-top: 0px !important;">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="#" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+            <img src="image_page/logo_image.png" alt="Logo">
+          </a>
+          <span class="mb-3 mb-md-0 text-body-secondary " >© 2023 Company, Inc</span>
+        </div>
+        Jesús Guillermo Salinas Aliaga
+      </footer>
+
     <!-- tiene que ir este orden por que si no carga bien por orden de ejecución
     puede decir que falte un elemento que no se ha creado -->
-    <script src="localstorage.js"></script>
-    <script src="canvas.js"></script>
-    <script src="puntos.js"></script>
-    <script src="pacman.js"></script>
-    <script src="/ghost_js/ghosts.js"></script>
-    <script src="laberinto.js"></script>
-    <script src="js.js"></script>
-    <script src="menuMain.js"></script>
+    <script src="Jesus_Salinas_Aliaga_audio.js"></script>
+    <script src="Jesus_Salinas_Aliaga_localstorage.js"></script>
+    <script src="Jesus_Salinas_Aliaga_canvas.js"></script>
+    <script src="Jesus_Salinas_Aliaga_puntos.js"></script>
+    <script src="Jesus_Salinas_Aliaga_pacman.js"></script>
+    <script src="/ghost_js/Jesus_Salinas_Aliaga_ghosts.js"></script>
+    <script src="Jesus_Salinas_Aliaga_laberinto.js"></script>
+    <script src="Jesus_Salinas_Aliaga_js.js"></script>
+    <script src="Jesus_Salinas_Aliaga_menuMain.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>

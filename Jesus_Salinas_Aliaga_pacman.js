@@ -7,6 +7,7 @@ pacman.positiony = 300;
 pacman.tamanox = 20;
 pacman.tamanoy = 20;
 pacman.puntuacion =0;
+pacman.win=false;
 pacman.pillado = false;//esto es si fue pillado por los fantasmas
 pacman.estadoPartida=false;//esto si la partida está terminada
 pacman.src = "pacman_image/Pacman_right.svg"
@@ -27,6 +28,8 @@ function fantasmaPillaPacman () {
                 pacman.positiony < fantasmas[i].pospy + fantasmas[i].tamanoy &&
                 pacman.positiony + pacman.tamanoy > fantasmas[i].pospy) {
                if (!pacman.pillado) {
+                musicapacmandead.currentTime=0;
+                musicapacmandead.play();
                      // si hubo colisión con algún fantasma tendrá que colocar pillado
                 pacman.pillado =true;
                 cuentaAtras =3;
@@ -40,7 +43,7 @@ function fantasmaPillaPacman () {
                 menulose.style.display = "block";
                 
                 
-
+                clearTimeout(idtimeout);
                 //limpiar los intervalos para que no sigan consumiento memoria
                 clearInterval(iaRed);
                 clearInterval(iaPink);
@@ -49,30 +52,7 @@ function fantasmaPillaPacman () {
                 document.removeEventListener("keyup", accionarPausa);
                 document.removeEventListener('keydown',teclasPacman);
                 cancelAnimationFrame(idanimacion);
-                array = actualizarDatos();
-                fechaActual = new Date();
-
-                // obtener los días para colocarlo en el array
-                dia = fechaActual.getDate();
-                mes = fechaActual.getMonth() + 1; // Los meses comienzan desde 0, por eso sumo 1
-                ano = fechaActual.getFullYear();
-                horas = fechaActual.getHours();
-                minutos = fechaActual.getMinutes();
-                if (minutos<10) {
-                    minutos = '0'+minutos;
-                }
-                // Formatear la fecha como deseado (en este caso, dd/mm/yyyy)
-                fechaFormateada = dia + '/' + mes + '/' + ano + " a las: "+horas+":"+minutos;
-
-                //creamos el objeto que tendrá que guardar la fecha y la puntuación:
-                guardarPuntuacion={
-                    puntaje:pacman.puntuacion,
-                    fecha:fechaFormateada
-                }
-                //guardamos la puntuación
-                array.push(guardarPuntuacion);
-                //cargamos al localStorage
-                cargarDatos(array);
+                subirDatosJugador();
                 
                } else {
                 return
@@ -94,7 +74,11 @@ function pacmanGana() {
         //crear menú sobre el canvas de victoria
         menuwin = document.getElementById("menuwin");
         menuwin.style.display = "block";
-        
+        if (!pacman.win) {
+            pacman.win=true;
+            musicapacmanwin.currentTime=0;
+            musicapacmanwin.play();
+        }
         
 
         //limpiar los intervalos para que no sigan consumiento memoria
@@ -137,7 +121,7 @@ function accionarPausa (event) {
          //crear el menú de pausa
          menuwin = document.getElementById("pausa");
          menuwin.style.display = "block";
-         
+         clearTimeout(idtimeout);
          
  
          //limpiar los intervalos para que no sigan consumiento memoria

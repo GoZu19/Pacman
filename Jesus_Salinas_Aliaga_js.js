@@ -45,12 +45,15 @@ function cargarJuego () {
 
 //para reiniciar la partida
 function reiniciarJuego () {
+    musicapacmanstart.currentTime=0;
+    musicapacmanstart.play()
     cuentaAtras =3;
     //reiniciar los valores del pacman:
     pacman.positionx = 290;
     pacman.positiony = 300;
     pacman.puntuacion=0;
     pacman.pillado=false;
+    pacman.win=false;
     pacman.src = "pacman_image/Pacman_right.svg";
     //reiniciar los valores de los fantasmas
     //fantasma rojo:
@@ -93,6 +96,7 @@ function continuar () {
     pacman.positionx = 290;
     pacman.positiony = 300;
     pacman.pillado =false;
+    pacman.win=false;
     pacman.src = "pacman_image/Pacman_right.svg";
     //reiniciar los valores de los fantasmas
     //fantasma rojo:
@@ -181,7 +185,7 @@ function gameLoop() {
         contextcanvas.textAlign = "center";
         contextcanvas.fillText(cuentaAtras, canvas.width / 2, canvas.height / 2);
         cuentaAtras-=1
-        setTimeout( gameLoop, 1000);
+        idtimeout=setTimeout( gameLoop, 1000);
         
     }else{
         if (!iniciado) {

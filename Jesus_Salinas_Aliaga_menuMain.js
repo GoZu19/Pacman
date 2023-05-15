@@ -37,15 +37,26 @@ function seleccionDificultad (num) {
             break;
     }
 }
-irmenuwin.addEventListener('click',cargarMenuMain);
-irmenulose.addEventListener('click',cargarMenuMain)
+irmenuwin.addEventListener('click',cargarMenuMain_win);
+irmenulose.addEventListener('click',cargarMenuMain_lose)
 irmenuhistorial.addEventListener('click',cargarMenuM_historial)
 irmenuinstrucciones.addEventListener('click',cargarMenuM_instrucciones);
 btn_instrucciones.addEventListener('click',mostrarInstrucciones)
-function cargarMenuMain (event) {
+function cargarMenuMain_lose (event) {
     menuPrincipal = document.getElementById("menuPrincipal");
     menuPrincipal.style.display ="block";
     canvas.style.display = "none";
+    menulose = document.getElementById("menulose")
+    menulose.style.display = "none";
+    event.stopPropagation()
+}
+function cargarMenuMain_win (event) {
+    menuPrincipal = document.getElementById("menuPrincipal");
+    menuPrincipal.style.display ="block";
+    canvas.style.display = "none";
+    menuwin = document.getElementById("menuwin")
+    menuwin.style.display = "none";
+    subirDatosJugador();
     event.stopPropagation()
 }
 function cargarMenuM_historial (event) {
