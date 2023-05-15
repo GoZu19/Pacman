@@ -20,36 +20,66 @@ pacman.onload = function() {
 function fantasmaPillaPacman () {
     fantasmas = crearArrayFantasma();
     
-    for (let i = 0; i < fantasmas.length; i++) {
-        //compruebo la colision de los fantasmas
-        if (pacman.positionx < fantasmas[i].pospx + fantasmas[i].tamanox &&
-            pacman.positionx + pacman.tamanox > fantasmas[i].pospx &&
-            pacman.positiony < fantasmas[i].pospy + fantasmas[i].tamanoy &&
-            pacman.positiony + pacman.tamanoy > fantasmas[i].pospy) {
-            // si hubo colisión con algún fantasma tendrá que colocar pillado
-            pacman.pillado =true;
-            //creación del menú:
-            //texto del rectangulo:
-            puntuacionlose = document.getElementById("puntuacion");
-            puntuacionlose.innerHTML=pacman.puntuacion;
+        for (let i = 0; i < fantasmas.length; i++) {
+            //compruebo la colision de los fantasmas
+            if (pacman.positionx < fantasmas[i].pospx + fantasmas[i].tamanox &&
+                pacman.positionx + pacman.tamanox > fantasmas[i].pospx &&
+                pacman.positiony < fantasmas[i].pospy + fantasmas[i].tamanoy &&
+                pacman.positiony + pacman.tamanoy > fantasmas[i].pospy) {
+               if (!pacman.pillado) {
+                     // si hubo colisión con algún fantasma tendrá que colocar pillado
+                pacman.pillado =true;
+                cuentaAtras =3;
+                //creación del menú:
+                //texto del rectangulo:
+                puntuacionlose = document.getElementById("puntuacion");
+                puntuacionlose.innerHTML=pacman.puntuacion;
 
-            //crear menú sobre el canvas de derrota
-            menulose = document.getElementById("menulose");
-            menulose.style.display = "block";
-            
-            
+                //crear menú sobre el canvas de derrota
+                menulose = document.getElementById("menulose");
+                menulose.style.display = "block";
+                
+                
 
-            //limpiar los intervalos para que no sigan consumiento memoria
-            clearInterval(iaRed);
-            clearInterval(iaPink);
-            clearInterval(iaSky);
-            clearInterval(iaYellow);
-            document.removeEventListener('keydown',teclasPacman);
-            cancelAnimationFrame(idanimacion);
-            
-        } 
+                //limpiar los intervalos para que no sigan consumiento memoria
+                clearInterval(iaRed);
+                clearInterval(iaPink);
+                clearInterval(iaSky);
+                clearInterval(iaYellow);
+                document.removeEventListener("keyup", accionarPausa);
+                document.removeEventListener('keydown',teclasPacman);
+                cancelAnimationFrame(idanimacion);
+                array = actualizarDatos();
+                fechaActual = new Date();
 
-    }
+                // obtener los días para colocarlo en el array
+                dia = fechaActual.getDate();
+                mes = fechaActual.getMonth() + 1; // Los meses comienzan desde 0, por eso sumo 1
+                ano = fechaActual.getFullYear();
+                horas = fechaActual.getHours();
+                minutos = fechaActual.getMinutes();
+                if (minutos<10) {
+                    minutos = '0'+minutos;
+                }
+                // Formatear la fecha como deseado (en este caso, dd/mm/yyyy)
+                fechaFormateada = dia + '/' + mes + '/' + ano + " a las: "+horas+":"+minutos;
+
+                //creamos el objeto que tendrá que guardar la fecha y la puntuación:
+                guardarPuntuacion={
+                    puntaje:pacman.puntuacion,
+                    fecha:fechaFormateada
+                }
+                //guardamos la puntuación
+                array.push(guardarPuntuacion);
+                //cargamos al localStorage
+                cargarDatos(array);
+                
+               } else {
+                return
+               }
+            } 
+
+        }
     
 }
 function pacmanGana() {
@@ -57,11 +87,11 @@ function pacmanGana() {
     
     if (puntos.length==0) {
         //creación del menú:
-        //texto del rectangulo:
+        //texto del rectangulo donde se va mostrar el menú de ganador:
         puntuacionwin = document.getElementById("puntuacion_win");
         puntuacionwin.innerHTML=pacman.puntuacion;
 
-        //crear menú sobre el canvas de derrota
+        //crear menú sobre el canvas de victoria
         menuwin = document.getElementById("menuwin");
         menuwin.style.display = "block";
         
@@ -72,6 +102,7 @@ function pacmanGana() {
         clearInterval(iaPink);
         clearInterval(iaSky);
         clearInterval(iaYellow);
+        document.removeEventListener("keyup", accionarPausa);
         document.removeEventListener('keydown',teclasPacman);
         cancelAnimationFrame(idanimacion);
         
@@ -95,6 +126,30 @@ function colisionPunto () {
             
         }
     });
+}
+//aquí va tener la función que activa el escuchador
+function pausaTecla () {
+    document.addEventListener("keyup", accionarPausa);
+}
+//aquí va tener la acción para el escuchador
+function accionarPausa (event) {
+    if (event.keyCode==27) {
+         //crear el menú de pausa
+         menuwin = document.getElementById("pausa");
+         menuwin.style.display = "block";
+         
+         
+ 
+         //limpiar los intervalos para que no sigan consumiento memoria
+         clearInterval(iaRed);
+         clearInterval(iaPink);
+         clearInterval(iaSky);
+         clearInterval(iaYellow);
+         document.removeEventListener('keydown',teclasPacman);
+         cancelAnimationFrame(idanimacion);
+        event.stopPropagation();
+    }
+    
 }
 
 function moverPacman () {

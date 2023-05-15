@@ -17,6 +17,12 @@ function mostrarDificultad () {
     contextcanvas.fillStyle = "#FFFFFF"
     contextcanvas.fillText("Nivel de dificultad: "+nivelDificultadvar, 150, 35);
 }
+//para mostrar la opción de pausa:
+function mostrarOpcionPausa () {
+    contextcanvas.font = "20px Arial";
+    contextcanvas.fillStyle = "#FFFFFF"
+    contextcanvas.fillText("para pausar el juego - presiona esc", 190, 590);
+}
 function cargarJuego () {
     //cargar el pacman
     pacman.onload();
@@ -39,10 +45,12 @@ function cargarJuego () {
 
 //para reiniciar la partida
 function reiniciarJuego () {
+    cuentaAtras =3;
     //reiniciar los valores del pacman:
     pacman.positionx = 290;
     pacman.positiony = 300;
     pacman.puntuacion=0;
+    pacman.pillado=false;
     pacman.src = "pacman_image/Pacman_right.svg";
     //reiniciar los valores de los fantasmas
     //fantasma rojo:
@@ -73,16 +81,18 @@ function reiniciarJuego () {
     //vover cargar el juego:
     
     iniciado =false;
-    cuentaAtras =3;
+    
     gameLoop();
    
     
 }
 //función para continuar la partida:
 function continuar () {
+    cuentaAtras =3
     //reiniciar los valores del pacman:
     pacman.positionx = 290;
     pacman.positiony = 300;
+    pacman.pillado =false;
     pacman.src = "pacman_image/Pacman_right.svg";
     //reiniciar los valores de los fantasmas
     //fantasma rojo:
@@ -112,9 +122,17 @@ function continuar () {
     
     //vover cargar el juego:
     iniciado =false;
-    cuentaAtras =3
     gameLoop();
     
+}
+function reanudar () {
+    //cerrar el Menú de pausa:
+    menuwin = document.getElementById("pausa");
+    menuwin.style.display = "none";
+    
+    //vover cargar el juego:
+    iniciado =false;
+    gameLoop();
 }
 
 
@@ -132,9 +150,8 @@ function gameLoop() {
     pacman.onload();
     //pintar los muros
     drawWalls();
-        // Llamar al bucle del juego otra vez
-    
-    
+    //cargar el mensaje de opción pausa:
+    mostrarOpcionPausa()
     //cargar la puntuación
     puntuacion(); 
     //mostrar dificultad:
@@ -170,6 +187,7 @@ function gameLoop() {
         if (!iniciado) {
         
             //esto es para ver si ya está iniciado para no iniciar para no generar mucho setIntervals
+            pausaTecla();
             cargarJuego();
             moverPacman();
             iniciado=true;

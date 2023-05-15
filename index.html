@@ -22,6 +22,7 @@
 </head>
 
 <body>
+    <!-- cabecera del juego -->
     <header class="cabeceraColor">
         <div class="container text-center">
             <div class="row">
@@ -37,10 +38,12 @@
             </div>
         </div>
     </header>
+    <!-- canvas -->
     <div>
 
         <canvas id="canvas"></canvas>
     </div>
+    <!-- comienzo de menús que puede utilizar el juego -->
     <!-- Menú de derrota del juego -->
     <div id="menulose" class="menu_lose">
         <div class="container-fluid d-flex text-center ">
@@ -123,6 +126,7 @@
                                         data-bs-toggle="dropdown" aria-expanded="false" style="margin-top:5px;">
                                         Dificultad
                                     </button>
+                                    <!-- seleccion de dificultad se ha utilizado boostrap -->
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" onclick="seleccionDificultad(1)" href="#">Facil</a></li>
                                         <li>
@@ -144,6 +148,12 @@
                                 <button id="historialbtn" class="btn btn-primary" style="margin-top:5px;">Historial</button>
                             </div>
                         </div>
+                        <div class="row justify-content-md-center">
+                            <!-- boton de Instrucciones -->
+                            <div class="col">
+                                <button id="btn_instrucciones" class="btn btn-dark" style="margin-top:5px;">Instrucciones</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -155,7 +165,7 @@
             <div class="content justify-content-center mx-auto">
                 <div class="row menuMain_dimensiones  bg_color_menu_lose">
                     <div class="col fonts_menu_lose">
-                        <div class="row">
+                        <div class="row d-flex flex-column h-100">
                             <div>
                                 Historial
                             </div>
@@ -166,7 +176,85 @@
                             <div id="datosHistorial">
 
                             </div>
+                            
+                            <div class="row justify-content-end mt-auto">
+                                <div class="col-auto">
+                                    <button id="regresarMenuM_historial" type="button" class="btn btn-primary">Volver al Menú</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Menú de pausa -->
+    <!-- menú historial de puntuación-->
+    <div id="pausa" class="menu_win">
+        <div class="container-fluid d-flex text-center ">
+            <div class="content justify-content-center mx-auto">
+                <div class="row menu_dimensiones align-items-center bg_color_menu_lose">
+                    <div class="col fonts_menu_lose">
+                        <div class="row justify-content-md-center">
+                            Pausa
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="col">
+                                <button type="button" onclick="reanudar()"
+                                    class="btn btn-outline-success">Continuar</button>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="col">
+                                <button onclick="toastSalir()" type="button" class="btn btn-outline-danger" style="margin-top:5px">Ir al Menú
+                                    Principal</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- alert del cerrado -->
+    <div id="salirToast" class="toast salirtoast bg-info-subtle fonts_menu_lose" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body">
+          Estas seguró de salir al menú principal, la puntuación se guardará.
+          <div class="mt-2 pt-2 border-top">
+            <button type="button" onclick="cargarMenuM_pausa ()" class="btn btn-primary btn-sm">Sí</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Cancelar</button>
+          </div>
+        </div>
+      </div>
 
+      <!-- Mostrar instrucciones:-->
+    
+    <div id="instrucciones" class="menu_instrucciones">
+        <div class="container-fluid d-flex text-center ">
+            <div class="content justify-content-center mx-auto">
+                <div class="row menuMain_dimensiones  bg_color_menu_lose">
+                    <div class="col fonts_menu_lose">
+                        <div class="row d-flex flex-column h-100">
+                            <div>
+                                Instrucciones
+                            </div>
+                            
+                            <!-- 
+                                es el Texto de las  intrucciones 
+                            -->
+                            <div style="color: darkblue;">
+                                El juego se trata de comer los puntos y hacer el mejor puntaje, mueves con las flechitas del teclado, 
+                                además si pulsas la tecla "esc" pausas el juego, si sales del juego guardará tu mejor puntuación. <br>
+                                Tienes tres dificultades: facil, normal y fumas porros el fumas porros es cuando los fantasmas se lo han fumado. <br>
+                                podrás tener el mejor puntaje?.
+                                <img src="image_page/pacmaninst.png" class="pacman_tamano" alt="Pacman">
+                            </div>
+                            
+                            <div class="row justify-content-end mt-auto">
+                                <div class="col-auto">
+                                    <button id="regresarMenuM_instruccion" type="button" class="btn btn-primary">Volver al Menú</button>
+                                </div>
+                            </div>
                             
                         </div>
                     </div>
