@@ -128,6 +128,6 @@ function drawPoints() {
         //colocar imagenes de fondo se puede utilizar funciones de canvas
         contextcanvas.fillStyle = "black";
         //para cargar los puntos en el mapa
-        contextcanvas.fillRect(puntos[i].x, puntos[i].y, puntos[i].width, puntos[i].height);
+        contextcanvas.fillRect(puntos[i].x, puntos[i].y, puntos[i].width, puntos[i].height);//pintamos según la pocisión y el tamaño deseado
     }
 }

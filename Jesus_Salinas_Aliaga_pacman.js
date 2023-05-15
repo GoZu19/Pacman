@@ -2,16 +2,19 @@
 const pacman = new Image();
 //le digo donde va estar en que sitio de x, en una imagen no puede tener atributos de x o y si fuera creación de figura y no una imagen si
 //aquí le digo 
+// le digo donde va estar ubicado el pacman
 pacman.positionx = 290;
 pacman.positiony = 300;
+//el tamaño del pacman
 pacman.tamanox = 20;
 pacman.tamanoy = 20;
+//aquí guardaremos la puntución del pacman
 pacman.puntuacion =0;
-pacman.win=false;
+pacman.win=false;//aquí podemos saber si ha ganado o perdido
 pacman.pillado = false;//esto es si fue pillado por los fantasmas
 pacman.estadoPartida=false;//esto si la partida está terminada
-pacman.src = "pacman_image/Pacman_right.svg"
-pacman.onload = function() {
+pacman.src = "pacman_image/Pacman_right.svg"//cargamos el pacman
+pacman.onload = function() {//está va ser su función para cargarlo que realmente es pintandolo con el context del canvas
 
 
     contextcanvas.drawImage(pacman, pacman.positionx, pacman.positiony);
@@ -27,35 +30,37 @@ function fantasmaPillaPacman () {
                 pacman.positionx + pacman.tamanox > fantasmas[i].pospx &&
                 pacman.positiony < fantasmas[i].pospy + fantasmas[i].tamanoy &&
                 pacman.positiony + pacman.tamanoy > fantasmas[i].pospy) {
-               if (!pacman.pillado) {
+               if (!pacman.pillado) {//comprobamos si ha sido pillado antes si no pues lo cargamos, para evitar bucles
                 musicapacmandead.currentTime=0;
                 musicapacmandead.play();
                      // si hubo colisión con algún fantasma tendrá que colocar pillado
-                pacman.pillado =true;
-                cuentaAtras =3;
+                pacman.pillado =true;//indicamos es que es true que lo pillaron
+                cuentaAtras =3;//incializamos la cuenta atras para de nuevo hacerlo repetir
                 //creación del menú:
-                //texto del rectangulo:
+                //texto del span del menú de derrota:
                 puntuacionlose = document.getElementById("puntuacion");
                 puntuacionlose.innerHTML=pacman.puntuacion;
 
                 //crear menú sobre el canvas de derrota
                 menulose = document.getElementById("menulose");
-                menulose.style.display = "block";
+                menulose.style.display = "block";//mostramos el menú de derrota creado en el html con el boostrap
                 
-                
+                //limpiamos todo los clearTimeSetout y intervals
                 clearTimeout(idtimeout);
                 //limpiar los intervalos para que no sigan consumiento memoria
                 clearInterval(iaRed);
                 clearInterval(iaPink);
                 clearInterval(iaSky);
                 clearInterval(iaYellow);
+                //limpiamos eventos para que no se pueda mover el pacman
                 document.removeEventListener("keyup", accionarPausa);
                 document.removeEventListener('keydown',teclasPacman);
-                cancelAnimationFrame(idanimacion);
-                subirDatosJugador();
+                
+                cancelAnimationFrame(idanimacion);//cancelamos la animación
+                subirDatosJugador();//subir datos de la puntución al localstorage
                 
                } else {
-                return
+                return //si no ha sido pillado salimos de la función
                }
             } 
 
