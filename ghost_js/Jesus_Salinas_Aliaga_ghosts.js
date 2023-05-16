@@ -84,16 +84,16 @@ function iaFantasmal(callback, ghost) {
         //función para que se mueva el fantasma
         
         movimientoFantasma(ghost)
-
-        if (ghost.positionx > 600) {
-            // Si hay colisión, mover al jugador de vuelta
+        
+        if (ghost.positionx > 590) {
+           // aquí es por que ha llegado el limite del mapa entonces lo ponemos de nuevo en el comienzo como efecto de teletransportación 
             if (ghost.pospx > 0) {
                 ghost.positionx = 0;
                 ghost.pospx = 0;
             }
         }
         if (ghost.positionx < 0) {
-            // Si hay colisión, mover al jugador de vuelta
+           // aquí es por que ha llegado el limite del mapa entonces lo ponemos de nuevo en al final como efecto de teletransportación
             if (ghost.pospx < 0) {
                 ghost.positionx = 590;
                 ghost.pospx = 590;

@@ -72,21 +72,25 @@ footer{
   display: none;
   z-index: 1;
 }
+/* las dimensiones del menú por defecto los menu win pausa y derrota */
 .menu_dimensiones{
   width: 300px;
   height: 300px;
 }
+/* el color de fondo de los menús de derrota win y pausa también se utiliza para el menú principal, instruccinoes y historial  tengo que cambiarle de nombre pero no me deja hacer refactor para todo el html*/
+/* entonces no me deja y cambiarlo del todo html cuesta mucho tiempo es una cosa de mejorarlo */
 .bg_color_menu_lose{
   
   background-color: rgb(152, 152, 152);
 }
+/* el tipo de texto igualmente no me permitia el refactor  */
 .fonts_menu_lose{
   font-family: 'Righteous', cursive;
 }
 /* el menú cuando ganas */
 .menu_win{
   position: absolute;
-  margin: 0 auto !important;
+  margin: 0 auto !important;/* aquí hago que siempre este centrado por que tiene un absolute y además tiene el left y rigth a 0 */
   top:350px;
   left: 0;
   right: 0;
@@ -98,27 +102,30 @@ footer{
 .menu_main{
   position: absolute;
   width:600 !important;
-  margin: 0 auto !important;
+  margin: 0 auto !important; /* aquí hago que siempre este centrado por que tiene un absolute y además tiene el left y rigth a 0 */
   top:198px;
   left: 0;
   right: 0;
   display:block;
   z-index: 1;
 }
+/* css de menú de instrucciones */
 .menu_instrucciones{
   position: absolute;
   width:600 !important;
-  margin: 0 auto !important;
+  margin: 0 auto !important;/* aquí hago que siempre este centrado por que tiene un absolute y además tiene el left y rigth a 0 */
   top:198px;
   left: 0;
   right: 0;
   display:none;
   z-index: 1;
 }
+/* son las dimensinoes del menú principal y menú que ocupen todo igual que el principal es utilizado para el historial y instrucciones, no pude cambiar el nombre por que no me permitia refactor */
 .menuMain_dimensiones{
   width: 609px;
   height: 609px;
 }
+/* responsive según los pixeles para que se vea para cualquier ordenador super bonito  */
 @media screen and (max-width : 1399px) {
   .menu_main{
     position: absolute;

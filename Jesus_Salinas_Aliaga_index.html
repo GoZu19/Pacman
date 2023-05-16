@@ -17,7 +17,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <!-- css y boostrap -->
+    <!-- mi css -->
     <link rel="stylesheet" href="Jesus_Salinas_Aliaga_css.css">
+    <!-- boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
@@ -25,20 +27,23 @@
 <body>
     <!-- cabecera del juego -->
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom fonts_menu_lose cabeceraColor">
+        <!-- imagen de la cabecera -->
         <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
           <img src="image_page/cabecera.jpg" alt="Logo Cabecera" style="height: 165px;">
-          <span class="fs-4 ">Pacman</span>
+          <!-- titulo de la página -->
+          <h1 class="fs-4 ">Pacman</h1>
         </a>
-  
-        <ul class="nav nav-pills">
+        
+        <ul class="nav nav-pills align-items-center">
+            <!-- botón enlace a mi github -->
             <li class="nav-item"><a href="https://github.com/GoZu19/Pacman" class="nav-link active" aria-current="page" title="ir al GitHub">GitHub</a></li>
         </ul>
       </header>
-    
+    <!-- canvas -->
     <div>
-<!-- canvas -->
         <canvas id="canvas"></canvas>
     </div>
+    <!-- fin del canvas -->
     <!-- comienzo de menús que puede utilizar el juego -->
     <!-- Menú de derrota del juego -->
     <div id="menulose" class="menu_lose">
@@ -47,16 +52,19 @@
                 <div class="row menu_dimensiones align-items-center bg_color_menu_lose">
                     <div class="col fonts_menu_lose">
                         <div class="row justify-content-md-center">
-                            Perdiste tu puntuación es: <span id="puntuacion"></span>
+                            <!-- titulo y mostrar la puntución realizada del jugador -->
+                            Perdiste tu puntuación es: <span id="puntuacion"></span><!-- en el span cargamos la puntuciación del juego -->
                         </div>
                         <div class="row justify-content-md-center">
                             <div class="col">
+                                <!-- boton para mostrar el menú principal -->
                                 <button id="irMenu_lose" type="button" class="btn btn-outline-danger">Ir al Menú
                                     Principal</button>
                             </div>
                         </div>
                         <div class="row justify-content-md-center">
                             <div class="col">
+                                <!-- botón de volver al menú principal -->
                                 <button type="button" onclick="reiniciarJuego()" class="btn btn-outline-warning"
                                     style="margin-top:5px">Reiniciar Partida</button>
                             </div>
@@ -66,6 +74,7 @@
             </div>
         </div>
     </div>
+
     <!-- Menú de Victoria del juego -->
     <div id="menuwin" class="menu_win">
         <div class="container-fluid d-flex text-center ">
@@ -73,16 +82,19 @@
                 <div class="row menu_dimensiones align-items-center bg_color_menu_lose">
                     <div class="col fonts_menu_lose">
                         <div class="row justify-content-md-center">
-                            ¡Ganaste! tu puntuación es: <span id="puntuacion_win"></span> <br>
+                            <!-- titulo y mostrar la puntución realizada del jugador -->
+                            ¡Ganaste! tu puntuación es: <span id="puntuacion_win"></span> <br><!-- en el span cargamos la puntuciación del juego -->
                         </div>
                         <div class="row justify-content-md-center">
                             <div class="col">
+                                <!-- boton para seguir jugando para seguir incrementando la puntuación  -->
                                 <button type="button" onclick="continuar()"
                                     class="btn btn-outline-success">Continuar</button>
                             </div>
                         </div>
                         <div class="row justify-content-md-center">
                             <div class="col">
+                                <!-- botón de volver al menú principal -->
                                 <button id="irMenu_win" type="button" class="btn btn-outline-danger"
                                     style="margin-top:5px">Ir al Menú
                                     Principal</button>
@@ -104,6 +116,7 @@
                             <div style="width: 17rem;">
                                 <img src="image_page/pacman.png" class="card-img-top" alt="Pacman">
                                 <div class="card-body">
+                                    <!-- titulo del juego y autor -->
                                     <p class="card-text">Pacman - creado por Jesús Guillemro Salinas</p>
                                 </div>
                             </div>
@@ -126,16 +139,19 @@
                                     </button>
                                     <!-- seleccion de dificultad se ha utilizado boostrap -->
                                     <ul class="dropdown-menu">
+                                        <!-- onclick para seleccionar la dificultad -->
                                         <li><a class="dropdown-item" onclick="seleccionDificultad(1)" href="#">Facil</a>
                                         </li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
+                                        <!-- onclick para seleccionar la dificultad -->
                                         <li><a class="dropdown-item" onclick="seleccionDificultad(2)"
                                                 href="#">Normal</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
+                                        <!-- onclick para seleccionar la dificultad -->
                                         <li><a class="dropdown-item" onclick="seleccionDificultad(3)" href="#">Fumas
                                                 Porros</a></li>
 
@@ -169,17 +185,17 @@
                 <div class="row menuMain_dimensiones  bg_color_menu_lose">
                     <div class="col fonts_menu_lose">
                         <div class="row d-flex flex-column h-100">
+                            <!-- titulo del menú -->
                             <div>
                                 Historial
                             </div>
-
                             <!-- 
                                 aquí se listará el historial y utilizará la clase: align-items-center para cetrar 
                             -->
                             <div id="datosHistorial">
-
+                                <!-- aquí va ir todo el listado del local storage de todas las partidas jugadas según la mayot puntuación -->
                             </div>
-
+                            <!-- botón para ir al menú principal -->
                             <div class="row justify-content-end mt-auto">
                                 <div class="col-auto">
                                     <button id="regresarMenuM_historial" type="button" class="btn btn-primary">Volver al
@@ -194,23 +210,25 @@
         </div>
     </div>
     <!-- Menú de pausa -->
-    <!-- menú historial de puntuación-->
     <div id="pausa" class="menu_win">
         <div class="container-fluid d-flex text-center ">
             <div class="content justify-content-center mx-auto">
                 <div class="row menu_dimensiones align-items-center bg_color_menu_lose">
                     <div class="col fonts_menu_lose">
+                        <!-- titulo del menú -->
                         <div class="row justify-content-md-center">
                             Pausa
                         </div>
                         <div class="row justify-content-md-center">
                             <div class="col">
+                                <!-- botón para continuar jugando pero restablecer todo de nuevo excepto la puntuación -->
                                 <button type="button" onclick="reanudar()"
                                     class="btn btn-outline-success">Continuar</button>
                             </div>
                         </div>
                         <div class="row justify-content-md-center">
                             <div class="col">
+                                <!-- boton para ir el menú principal -->
                                 <button onclick="toastSalir()" type="button" class="btn btn-outline-danger"
                                     style="margin-top:5px">Ir al Menú
                                     Principal</button>
@@ -225,9 +243,12 @@
     <div id="salirToast" class="toast salirtoast bg-info-subtle fonts_menu_lose" role="alert" aria-live="assertive"
         aria-atomic="true">
         <div class="toast-body">
+            <!-- mensaje del toast -->
             Estas seguró de salir al menú principal, la puntuación se guardará.
             <div class="mt-2 pt-2 border-top">
+                <!-- opcion para ir el menú -->
                 <button type="button" onclick="cargarMenuM_pausa ()" class="btn btn-primary btn-sm">Sí</button>
+                <!-- opcion apra cancelar que solo se oculta si le das -->
                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Cancelar</button>
             </div>
         </div>
@@ -241,6 +262,7 @@
                 <div class="row menuMain_dimensiones  bg_color_menu_lose">
                     <div class="col fonts_menu_lose">
                         <div class="row d-flex flex-column h-100">
+                            <!-- titulo del menú -->
                             <div>
                                 Instrucciones
                             </div>
@@ -258,7 +280,7 @@
                                 podrás tener el mejor puntaje?.
                                 <img src="image_page/pacmaninst.png" class="pacman_tamano" alt="Pacman">
                             </div>
-
+                            <!--boton para ir al menú principal  -->
                             <div class="row justify-content-end mt-auto">
                                 <div class="col-auto">
                                     <button id="regresarMenuM_instruccion" type="button" class="btn btn-primary">Volver
@@ -273,16 +295,18 @@
         </div>
     </div>
     <!-- aquí termina el uso de menú apartir de abajo utilizamos el ya todo el body para la página  -->
-    <!-- aquí se utiliza se utiliza un complemento de boostrap para especificar cosas sobre el juego -->
+    <!-- aquí se utiliza se utiliza un complemento de boostrap para especificar cosas sobre el juego  es utlizado el acordion-->
     <div class="accordion" id="accordionExample" style="margin-top: 610px;">
         <div class="accordion-item">
           <h2 class="accordion-header">
+            <!-- titulo del acordion -->
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
              Pacman
             </button>
           </h2>
           <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
             <div class="accordion-body">
+                <!-- contenido del acordion -->
               <strong>Pacman</strong> para realizar este juego se tuvo que utilizar herrramientas como <strong>Boostrap</strong> para los menús para que se vea super cookie, entonces puedes interactuar
               o implementar cosas nuevas sobre el menú tocando en el html en los apartados de los menús.
             </div>
@@ -291,11 +315,13 @@
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              <strong>guardar Partida</strong>
+              <!-- titulo del acordion -->
+                <strong>guardar Partida</strong>
             </button>
           </h2>
           <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
             <div class="accordion-body">
+                  <!-- contenido del acordion -->
               <strong>guardado de partida</strong> El guardado de partida tiene como uso el localStorage para guardar los mejores puntaje así que quieres parecer el tablero tendrás sumar tanto puntos como puedas, eso sí los puntajes se guardan cuando te comen, cuando
                 cuando sales hacia el menú principal, y tienes las intrucciones del juego en el menú principal
             </div>
@@ -304,11 +330,13 @@
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <!-- titulo del acordion -->
                 <strong> Nivel de dificultad</strong>
             </button>
           </h2>
           <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
             <div class="accordion-body">
+                  <!-- contenido del acordion -->
               <strong>Nivel de dificultad</strong> se compone en 3 nivel: <strong>facil</strong> que este nivel tu tienes ventaja por que tu vas más rápido. <br>
             <strong>Normal</strong>los fantasmas y tu van a la misma velocidad entonces ahí es donde depende de ti. <br>
             <strong>Fumas Porros</strong> este nivel su nombre viene por que los fantasmas se fumaron un porro y estan así de loco tendrás que esforzarte si quieres ganar

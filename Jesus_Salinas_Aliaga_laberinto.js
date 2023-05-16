@@ -11,16 +11,16 @@ const laberinto1 = [
     { x: 50, y: 0, width: 500, height: 50 },
     //muro abajo
     { x: 50, y: 550, width: 500, height: 50 },
-    //muro inferior.
+    //muro inferior pero un poco adentro.
     { x: 70, y: 480, width: 460, height: 50 },
-    //muro superior.
+    //muro superior pero un poco adentro.
     { x: 70, y: 70, width: 460, height: 50 },
     //muro laterales izquierdo centrales
     { x: 70, y: 140, width: 50, height: 160 },
     { x: 70, y: 320, width: 50, height: 140 },
     //muro laterales derecho centrales
     { x: 480, y: 320, width: 50, height: 140 },
-    { x: 480, y: 140, width: 50, height: 140 },
+    { x: 480, y: 140, width: 50, height: 160 },
     //muro inferior centro centrales:
     { x: 140, y: 410, width: 150, height: 50 },
     { x: 310, y: 410, width: 150, height: 50 },
@@ -42,7 +42,7 @@ function drawWalls() {
         //el fillstyle sirve para dar estilo a lo que vayamos hacer, no solo es para pintar también es para
         //colocar imagenes de fondo se puede utilizar funciones de canvas
         contextcanvas.fillStyle = "blue";
-        //para cargar el muro en el camba
+        //para cargar el muro en el canvas
         contextcanvas.fillRect(laberinto1[i].x, laberinto1[i].y, laberinto1[i].width, laberinto1[i].height);
     }
 }

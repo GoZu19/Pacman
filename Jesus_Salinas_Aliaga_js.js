@@ -9,13 +9,13 @@ iaPink = 0;
 function puntuacion () {
     contextcanvas.font = "20px Arial";
     contextcanvas.fillStyle = "#FFFFFF"
-    contextcanvas.fillText("Puntuación: "+pacman.puntuacion, 450, 35);
+    contextcanvas.fillText("Puntuación: "+pacman.puntuacion, 450, 35);//pintamos la puntuación
 }
 //para mostrar en la pantalla que nivel de dificultad esta
 function mostrarDificultad () {
     contextcanvas.font = "20px Arial";
     contextcanvas.fillStyle = "#FFFFFF"
-    contextcanvas.fillText("Nivel de dificultad: "+nivelDificultadvar, 150, 35);
+    contextcanvas.fillText("Nivel de dificultad: "+nivelDificultadvar, 150, 35); //pintamos el nivel de dificultad
 }
 //para mostrar la opción de pausa:
 function mostrarOpcionPausa () {
@@ -45,9 +45,9 @@ function cargarJuego () {
 
 //para reiniciar la partida
 function reiniciarJuego () {
-    musicapacmanstart.currentTime=0;
-    musicapacmanstart.play()
-    cuentaAtras =3;
+    musicapacmanstart.currentTime=0; //colocarlo 0 musica de comienzo de juego
+    musicapacmanstart.play()//reproducirlo
+    
     //reiniciar los valores del pacman:
     pacman.positionx = 290;
     pacman.positiony = 300;
@@ -84,14 +84,16 @@ function reiniciarJuego () {
     //vover cargar el juego:
     
     iniciado =false;
-    
-    gameLoop();
-   
+    cancelAnimationFrame(idanimacion) //cancelamos por si acaso la animación del juego
+    idanimacion = requestAnimationFrame(gameLoop); //volvemos a ejecutar la animación del juego
+   //esto lo hago para evitar problemas, con esto he podido solucionar un problema que me encontrado que creo que era  por el orden de ejecución o no se pero el contador segui ejecutandose internamente en el AnimationFrame
+   //y cuando volvia a pasar comenzaba en 2 y rapidamente se colocaba a 0 con esto me aseguro si no lo hahecho correctamente que lo haga y si lo hace
     
 }
 //función para continuar la partida:
 function continuar () {
-    cuentaAtras =3
+    musicapacmanstart.currentTime=0;//colocar a 0 musica de comienzo de juego
+    musicapacmanstart.play()//reproducirlo
     //reiniciar los valores del pacman:
     pacman.positionx = 290;
     pacman.positiony = 300;
@@ -126,7 +128,8 @@ function continuar () {
     
     //vover cargar el juego:
     iniciado =false;
-    gameLoop();
+    cancelAnimationFrame(idanimacion)
+    idanimacion = requestAnimationFrame(gameLoop);
     
 }
 function reanudar () {
@@ -136,7 +139,10 @@ function reanudar () {
     
     //vover cargar el juego:
     iniciado =false;
-    gameLoop();
+    cancelAnimationFrame(idanimacion)//cancelamos por si acaso la animación del juego
+    idanimacion = requestAnimationFrame(gameLoop); //volvemos a ejecutar la animación del juego
+    //esto lo hago para evitar problemas, con esto he podido solucionar un problema que me encontrado que creo que era  por el orden de ejecución o no se pero el contador segui ejecutandose internamente en el AnimationFrame
+   //y cuando volvia a pasar comenzaba en 2 y rapidamente se colocaba a 0 con esto me aseguro si no lo hahecho correctamente que lo haga y si lo hace
 }
 
 
@@ -177,27 +183,29 @@ function gameLoop() {
     
 
     
-    //la cuenta hacia atras el juego
-    if(cuentaAtras >= 0){
+    //la cuenta hacia atras el juego me aseguro que no entre nuevamente con el iniciado, además no empieza ejecutar el juego hasta que no llega la cuenta a 0
+    if(cuentaAtras >= 0 && !iniciado){
         
         contextcanvas.font = "190px Arial";
         contextcanvas.fillStyle = "purple";
         contextcanvas.textAlign = "center";
         contextcanvas.fillText(cuentaAtras, canvas.width / 2, canvas.height / 2);
-        cuentaAtras-=1
-        idtimeout=setTimeout( gameLoop, 1000);
+        --cuentaAtras
+        idtimeout=setTimeout( gameLoop, 1000);//vuelvo ejecutar el bucle para que siga siendo la cuenta hacia atras pero se ejecuta cada 1 segundo
         
     }else{
         if (!iniciado) {
-        
+            cuentaAtras=3
+            clearTimeout(idtimeout)//limpio el timeout de la cuenta atras
             //esto es para ver si ya está iniciado para no iniciar para no generar mucho setIntervals
             pausaTecla();
             cargarJuego();
             moverPacman();
             iniciado=true;
-            
+            gameLoop()
         }
+        idanimacion = requestAnimationFrame(gameLoop);//ejecutamos el juego
         
-        idanimacion = requestAnimationFrame(gameLoop);
     }
+    
 }
