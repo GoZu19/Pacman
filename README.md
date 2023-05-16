@@ -17,5 +17,5 @@ Para controlar el movimiento del personaje y permitir al usuario pausar el juego
 ## Mensaje al finalizar el juego
 Al finalizar el juego Pac-Man, se muestra un mensaje al usuario informándole de su puntuación final y permitiéndole iniciar una nueva partida o también para regresar el menú, también se ha implementado un `menu de pausa` donde se pregunta si quiere reanudar la partida o quiere salir al menú principal si sale se guardará automáticamente la partida y además preguntará al usuario con un toast si quiere de verdad salir del juego `(el uso del toast y los menús y casí todo el juego a nivel grafico es utilizando boostrap para hacerlo mucho más visual excepto el canvas)`.
 
-##Boostrap
+## Boostrap
 se ha utilizado `boostrap` para decorar la página Web además para hacer los menús, y el toast de aviso de abandono a la partida, también para crear registro del localStorage
